@@ -16,7 +16,7 @@ var userInput = process.argv.slice(3).join(" ");
 //switch case for commands
 switch (command) {
     case "spotify-this-song":
-        spotifyThisSong();
+        spotifyThisSong(userInput);
     break;
 
     case "concert-this":
@@ -35,4 +35,25 @@ switch (command) {
 
 };
 
+function spotifyThisSong() {
 
+    if (!userInput) {
+        userInput = "The Sign Ace of Base"
+    };
+
+    spotify.search({type: 'track', query: userInput, limit: 5}, function(err, data){
+        if (err) {
+            return console.log(`Error occurred: ${err}`)
+        };
+    
+        console.log(`
+        ---------------------------\n
+        Artist: ${data.tracks.items[0].artists[0].name}
+        Song Title: ${data.tracks.items[0].name}
+        Album: ${data.tracks.items[0].album.name}
+        Play on Spotify: ${data.tracks.items[0].external_urls.spotify}\n
+        ---------------------------\n`)
+        
+    });
+
+};
