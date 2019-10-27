@@ -1,4 +1,8 @@
 //read and set environment variables
 require("dotenv").config();
 
-console.log(process.env);
+var keys = require("./keys.js")
+
+var spotify = new spotify(keys.spotify);
+
+spotify-this-song
