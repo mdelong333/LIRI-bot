@@ -1,6 +1,8 @@
 //read and set environment variables
 require("dotenv").config();
 
+var liri = require("./liri");
+
 //require keys file
 var keys = require("./keys");
 
@@ -14,15 +16,15 @@ var spotify = new Spotify(keys.spotify);
 var fs = require("fs-extra");
 
 //function to run spotify query
-function spotifyThisSong(query) {
-    var song = query;
+function spotifyThisSong(userQuery) {
 
-    spotify.search({type: "track", query: song}, function(err, data){
+    spotify.search({type: "track", query: userQuery}, function(err, data){
         if (err) {
             return console.log(`Error occurred: ${err}`)
         };
         console.log(song);
-        console.log(song.artist.name);
+        console.log(data.tracks.items[0]);
+        
 
         console.log("---------------\n")
     });
