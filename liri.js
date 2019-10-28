@@ -12,6 +12,9 @@ var axios = require("axios");
 //require moment
 var moment = require("moment");
 
+//require fs
+var fs = require("fs-extra");
+
 //variables for spotify package and keys
 var Spotify = require ('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
@@ -49,7 +52,7 @@ switch (command) {
 
     Invalid input - enter one of the following commands:
     
-    spotify-this-song to search songs on spotify
+    spotify-this-song to search songs on spotify 
     concert-this to search upcoming concerts by a specific artist
     movie-this to search movies on omdb
     do-what-it-says to use commands from random.txt`));
@@ -169,3 +172,37 @@ function movieThis() {
             console.log(error.config);
         });
 };
+
+function doThis() {
+
+    fs.readFile("random.txt", "utf8", function(err, data) {
+
+        if (err) {
+            return console.log(err);
+        };
+
+        //put data from random.txt into an array and use split to separate command from search terms
+        var dataArr = data.split(",");
+
+
+        command = dataArr[0];
+        userInput = dataArr[1];
+        console.log(command);
+        console.log(userInput);
+        
+        if (dataArr[0] === "spotify-this-song") {
+
+            spotifyThisSong(userInput);
+
+        } else if (dataArr[0] === "concert-this") {
+
+            concertThis(userInput);
+
+        } else if (dataArr[0] === "movie-this") {
+
+            movieThis(userInput);
+
+        }
+
+    })
+}
