@@ -45,7 +45,14 @@ switch (command) {
         doThis();
     break;
 
-    default: console.log("invalid input");
+    default: console.log(wrap(`
+
+    Invalid input - enter one of the following commands:
+    
+    spotify-this-song to search songs on spotify
+    concert-this to search upcoming concerts by a specific artist
+    movie-this to search movies on omdb
+    do-what-it-says to use commands from random.txt`));
 
 };
 
@@ -59,14 +66,15 @@ function spotifyThisSong() {
         if (err) {
             return console.log(`Error occurred: ${err}`)
         };
-        
-        console.log(wrap(`
 
+        for (var s = 0; s < data.tracks.items.length; s++)
+        console.log(wrap(`
+        
         ---------------------------\n
-        Artist: ${data.tracks.items[0].artists[0].name}
-        Song Title: ${data.tracks.items[0].name}
-        Album: ${data.tracks.items[0].album.name}
-        Play on Spotify: ${data.tracks.items[0].external_urls.spotify}\n
+        Artist: ${data.tracks.items[s].artists[0].name}
+        Song Title: ${data.tracks.items[s].name}
+        Album: ${data.tracks.items[s].album.name}
+        Play on Spotify: ${data.tracks.items[s].external_urls.spotify}\n
         ---------------------------\n`));
         
     });
@@ -82,7 +90,6 @@ function concertThis() {
 
         function(response) {
 
-            console.log(response.data);
             for (var i = 0; i < response.data.length; i++) {
 
                 console.log(wrap(`
