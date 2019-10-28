@@ -87,8 +87,8 @@ function concertThis() {
 
                 console.log(wrap(`
                 
-                ---------------------------\n
                 ${userInput}
+                \n---------------------------
                 Venue: ${response.data[i].venue.name}
                 Location: ${response.data[i].venue.city}, ${response.data[i].venue.region}
                 Date: ${moment(response.data[i].datetime, 'YYYY-MM-DDTHH:mm:ss').format('MM/DD/YYYY, h:mm A')}
