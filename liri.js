@@ -16,6 +16,9 @@ var spotify = new Spotify(keys.spotify);
 //omdb key
 var omdb = (keys.omdb);
 
+//bandsintown key
+var bandsInTown = (keys.bandsInTown);
+
 //Variables for user input
 var command = process.argv[2];
 var userInput = process.argv.slice(3).join(" ");
@@ -55,7 +58,7 @@ function spotifyThisSong() {
         };
         
         console.log(wrap(`
-        
+
         ---------------------------\n
         Artist: ${data.tracks.items[0].artists[0].name}
         Song Title: ${data.tracks.items[0].name}
@@ -72,7 +75,19 @@ function concertThis() {
 };
 
 function movieThis() {
+
+    if (!userInput) {
+        userInput = "Apostle"
+        console.log(wrap(`
+        
+        ---------------------------\n
+        If you haven't watched "Apostle", then you should: http://www.imdb.com/title/tt6217306/
+        
+        It's on Netflix!`));
+    };
+
     axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=" + omdb.id).then(
+        
         function(response) {
             
             console.log(wrap(`
