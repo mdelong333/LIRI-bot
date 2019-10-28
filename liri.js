@@ -1,12 +1,20 @@
 //read and set environment variables
 require("dotenv").config();
 
+var wrap = require('word-wrap');
+
 //require keys file
 var keys = require("./keys.js");
+
+//require axios
+var axios = require("axios");
 
 //variables for spotify package and keys
 var Spotify = require ('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
+
+//omdb key
+var omdb = (keys.omdb);
 
 //Variables for user input
 var command = process.argv[2];
@@ -20,7 +28,7 @@ switch (command) {
     break;
 
     case "concert-this":
-        concertThis();
+        concertThis(userInput);
     break;
 
     case "movie-this":
@@ -45,15 +53,54 @@ function spotifyThisSong() {
         if (err) {
             return console.log(`Error occurred: ${err}`)
         };
-    
-        console.log(`
+        
+        console.log(wrap(`
+        
         ---------------------------\n
         Artist: ${data.tracks.items[0].artists[0].name}
         Song Title: ${data.tracks.items[0].name}
         Album: ${data.tracks.items[0].album.name}
         Play on Spotify: ${data.tracks.items[0].external_urls.spotify}\n
-        ---------------------------\n`)
+        ---------------------------\n`));
         
     });
 
+};
+
+function concertThis() {
+
+};
+
+function movieThis() {
+    axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=" + omdb.id).then(
+        function(response) {
+            
+            console.log(wrap(`
+            
+            ---------------------------\n
+            Title: ${response.data.Title}
+            Release Date: ${response.data.Released}
+            IMDB rating: ${response.data.imdbRating}
+            Rotten Tomatoes rating: ${response.data.Ratings[1].Value}
+            Country of Origin: ${response.data.Country}
+            Language: ${response.data.Language}
+            Plot: ${response.data.Plot}
+            Actors: ${response.data.Actors}
+            ---------------------------\n
+            `)); 
+        })
+        .catch(function(error) {
+            if (error.response) {
+                console.log(`
+                Data: ${error.response.data}
+                Status: ${error.response.status}
+                Status: ${error.response.headers}
+                `)
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log(`Error: ${error.message}`);
+            }
+            console.log(error.config);
+        });
 };
