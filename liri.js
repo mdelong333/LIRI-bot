@@ -9,6 +9,9 @@ var keys = require("./keys.js");
 //require axios
 var axios = require("axios");
 
+//require moment
+var moment = require("moment");
+
 //variables for spotify package and keys
 var Spotify = require ('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
@@ -27,11 +30,11 @@ var userInput = process.argv.slice(3).join(" ");
 //switch case for commands
 switch (command) {
     case "spotify-this-song":
-        spotifyThisSong(userInput);
+        spotifyThisSong();
     break;
 
     case "concert-this":
-        concertThis(userInput);
+        concertThis();
     break;
 
     case "movie-this":
@@ -72,12 +75,52 @@ function spotifyThisSong() {
 
 function concertThis() {
 
+    if (!userInput) {
+        userInput = "Surf Curse";
+    }
+    axios.get("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=" + bandsInTown.id).then(
+
+        function(response) {
+
+            console.log(response.data);
+            for (var i = 0; i < response.data.length; i++) {
+
+                console.log(wrap(`
+                
+                ---------------------------\n
+                ${userInput}
+                Venue: ${response.data[i].venue.name}
+                Location: ${response.data[i].venue.city}, ${response.data[i].venue.region}
+                Date: ${moment(response.data[i].datetime, 'YYYY-MM-DDTHH:mm:ss').format('MM/DD/YYYY, h:mm A')}
+                ---------------------------\n
+                `));
+
+            };
+
+        })
+        .catch(function(error) {
+
+            if (error.response) {
+                console.log(`
+                Data: ${error.response.data}
+                Status: ${error.response.status}
+                Status: ${error.response.headers}
+                `)
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log(`Error: ${error.message}`);
+            }
+            console.log(error.config);
+
+        });
+
 };
 
 function movieThis() {
 
     if (!userInput) {
-        userInput = "Apostle"
+        userInput = "Apostle";
         console.log(wrap(`
         
         ---------------------------\n
