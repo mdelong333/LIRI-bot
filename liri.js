@@ -52,7 +52,7 @@ switch (command) {
 
     Invalid input - enter one of the following commands:
     
-    spotify-this-song to search songs on spotify 
+    spotify-this-song to search songs on spotify, returns up to 5 relevant results
     concert-this to search upcoming concerts by a specific artist
     movie-this to search movies on omdb
     do-what-it-says to use commands from random.txt`));
@@ -70,22 +70,27 @@ function spotifyThisSong() {
             return console.log(`Error occurred: ${err}`)
         };
 
-        for (var s = 0; s < data.tracks.items.length; s++)
+        var search = data.tracks.items
+        
+        for (var s = 0; s < search.length; s++)
+        
         console.log(wrap(`
         
         ---------------------------\n
-        Artist: ${data.tracks.items[s].artists[0].name}
-        Song Title: ${data.tracks.items[s].name}
-        Album: ${data.tracks.items[s].album.name}
-        Play on Spotify: ${data.tracks.items[s].external_urls.spotify}\n
+        Artist: ${search[s].artists[0].name}
+        Song Title: ${search[s].name}
+        Album: ${search[s].album.name}
+        Play on Spotify: ${search[s].external_urls.spotify}\n
         ---------------------------\n`));
+
+        //fs.appendFile("log.txt", "\n" + "Artist: " + search[s].artists[0].name + "\n", "utf8");
         
     });
 
 };
 
 function concertThis() {
-
+    
     if (!userInput) {
         userInput = "Surf Curse";
     }
@@ -184,18 +189,15 @@ function doThis() {
         //put data from random.txt into an array and use split to separate command from search terms
         var dataArr = data.split(",");
 
-
         command = dataArr[0];
         userInput = dataArr[1];
-        console.log(command);
-        console.log(userInput);
         
         if (dataArr[0] === "spotify-this-song") {
 
             spotifyThisSong(userInput);
 
         } else if (dataArr[0] === "concert-this") {
-
+            //not working whyyyy
             concertThis(userInput);
 
         } else if (dataArr[0] === "movie-this") {
