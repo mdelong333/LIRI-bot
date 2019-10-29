@@ -7,20 +7,25 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## Instructions
 
-* 1. Clone repo
-* 2. Run npm install
-
+1. Clone repo
+    - insert link here
+2. Run `npm install`
+3. Use command line to pass in one of four commands
+    -`spotify-this-song`
+    -`concert-this`
+    -`movie-this`
+    -`do-what-it-says`
+4. Follow your command with the song/band/movie you'd like to search
 
 ## Demo video
 
 * link goes here
 
-Guidelines: In order to meet the Employer Competitive standards and be ready to show your application to employers, the README.md file should meet the following criteria:
+## Tech used
 
-Clearly state the problem the app is trying to solve (i.e. what is it doing and why)
-Give a high-level overview of how the app is organized
-Give start-to-finish instructions on how to run the app
-Include screenshots, gifs or videos of the app functioning
-Contain a link to a deployed version of the app
-Clearly list the technologies used in the app
-State your role in the app development
+* NodeJS
+* JavaScript
+* Spotify API
+* BandsInTown API
+* OMDB API
+* NPM packages
