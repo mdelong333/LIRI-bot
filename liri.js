@@ -65,26 +65,52 @@ function spotifyThisSong() {
         userInput = "The Sign Ace of Base"
     };
 
-    spotify.search({type: 'track', query: userInput, limit: 5}, function(err, data){
+    spotify.search({type: 'track', query: userInput, limit: 1}, function(err, data){
         if (err) {
             return console.log(`Error occurred: ${err}`)
         };
 
         var search = data.tracks.items
         
-        for (var s = 0; s < search.length; s++)
+        for (var s = 0; s < search.length; s++) {
         
-        console.log(wrap(`
-        
-        ---------------------------\n
-        Artist: ${search[s].artists[0].name}
-        Song Title: ${search[s].name}
-        Album: ${search[s].album.name}
-        Play on Spotify: ${search[s].external_urls.spotify}\n
-        ---------------------------\n`));
+            var artists = search[s].artists;
+            var song = search[s].name;
+            var album = search[s].album.name;
+            var link = search[s].external_urls.spotify;
 
-        //fs.appendFile("log.txt", "\n" + "Artist: " + search[s].artists[0].name + "\n", "utf8");
-        
+            for (var a = 0; a < artists.length; a++) {
+
+                var artistsName = artists[a].name;
+
+                console.log(wrap(`
+                
+                ---------------------------\n
+                Artist: ${artistsName}
+                Song Title: ${song}
+                Album: ${album}
+                Play on Spotify: ${link}\n
+                ---------------------------\n`));
+
+                fs.appendFile("log.txt", `
+                ---------------------------\n
+                Artist: ${artistsName}
+                Song Title: ${song}
+                Album: ${album}
+                Play on Spotify: ${link}\n
+                ---------------------------\n`, "utf8", function(err) {
+                    if (err) {
+                        return console.log(err);
+                    };
+            
+                    console.log("Content added!");
+            
+                });
+
+            };
+
+        };
+
     });
 
 };
@@ -204,7 +230,8 @@ function doThis() {
 
             movieThis(userInput);
 
-        }
+        };
 
-    })
-}
+    });
+
+};
