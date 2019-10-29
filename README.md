@@ -10,7 +10,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 1. Clone repo
     - insert link here
 2. Run `npm install`
-3. Use command line to pass in one of four commands
+3. Use command line to pass in `node liri.js` followed by one of four commands
     - `spotify-this-song`
     - `concert-this`
     - `movie-this`
