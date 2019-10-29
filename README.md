@@ -11,10 +11,10 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
     - insert link here
 2. Run `npm install`
 3. Use command line to pass in one of four commands
-    -`spotify-this-song`
-    -`concert-this`
-    -`movie-this`
-    -`do-what-it-says`
+    - `spotify-this-song`
+    - `concert-this`
+    - `movie-this`
+    - `do-what-it-says`
 4. Follow your command with the song/band/movie you'd like to search
 
 ## Demo video
