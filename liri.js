@@ -92,13 +92,7 @@ function spotifyThisSong() {
                 Play on Spotify: ${link}\n
                 ---------------------------\n`));
 
-                fs.appendFile("log.txt", `
-                ---------------------------\n
-                Artist: ${artistsName}
-                Song Title: ${song}
-                Album: ${album}
-                Play on Spotify: ${link}\n
-                ---------------------------\n`, "utf8", function(err) {
+                fs.appendFile("log.txt", `---------------------------\nArtist: ${artistsName}\nSong Title: ${song}\nAlbum: ${album}\nPlay on Spotify: ${link}\n---------------------------\n`, "utf8", function(err) {
                     if (err) {
                         return console.log(err);
                     };
@@ -126,15 +120,30 @@ function concertThis() {
 
             for (var i = 0; i < response.data.length; i++) {
 
+                var venue = response.data[i].venue.name;
+                var city = response.data[i].venue.city;
+                var region = response.data[i].venue.region;
+                var country = response.data[i].venue.country;
+                var date = response.data[i].datetime;
+
                 console.log(wrap(`
                 
                 ${userInput}
                 \n---------------------------
-                Venue: ${response.data[i].venue.name}
-                Location: ${response.data[i].venue.city}, ${response.data[i].venue.region}
-                Date: ${moment(response.data[i].datetime, 'YYYY-MM-DDTHH:mm:ss').format('MM/DD/YYYY, h:mm A')}
+                Venue: ${venue}
+                Location: ${city}, ${region} ${country}
+                Date: ${moment(date, 'YYYY-MM-DDTHH:mm:ss').format('MM/DD/YYYY, h:mm A')}
                 ---------------------------\n
                 `));
+
+                fs.appendFile("log.txt", `---------------------------\n${userInput}\nVenue: ${venue}\nLocation: ${city}, ${region} ${country}\nDate: ${date} \n---------------------------\n`, "utf8", function(err) {
+                    if (err) {
+                        return console.log(err);
+                    };
+            
+                    console.log("Content added!");
+            
+                });
 
             };
 
@@ -173,20 +182,38 @@ function movieThis() {
     axios.get("http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=" + omdb.id).then(
         
         function(response) {
+
+            var title = response.data.Title;
+            var releaseDate = response.data.Released;
+            var imdbRating = response.data.imdbRating;
+            var rtRating = response.data.Ratings[1].Value;
+            var country = response.data.Country;
+            var language = response.data.Language;
+            var plot = response.data.Plot;
+            var actors = response.data.Actors;
             
             console.log(wrap(`
             
             ---------------------------\n
-            Title: ${response.data.Title}
-            Release Date: ${response.data.Released}
-            IMDB rating: ${response.data.imdbRating}
-            Rotten Tomatoes rating: ${response.data.Ratings[1].Value}
-            Country of Origin: ${response.data.Country}
-            Language: ${response.data.Language}
-            Plot: ${response.data.Plot}
-            Actors: ${response.data.Actors}
+            Title: ${title}
+            Release Date: ${releaseDate}
+            IMDB rating: ${imdbRating}
+            Rotten Tomatoes rating: ${rtRating}
+            Country of Origin: ${country}
+            Language: ${language}
+            Plot: ${plot}
+            Actors: ${actors}
             ---------------------------\n
             `)); 
+
+            fs.appendFile("log.txt", `---------------------------\nTitle: ${title}\nRelease Date: ${releaseDate}\nIMDB Rating: ${imdbRating}\nRotten Tomatoes rating: ${rtRating}\nCountry of Origin: ${country}\nLanguage: ${language}\nPlot: ${plot}\nActors: ${actors}\n---------------------------\n`, "utf8", function(err) {
+                if (err) {
+                    return console.log(err);
+                };
+        
+                console.log("Content added!");
+        
+            });
         })
         .catch(function(error) {
             if (error.response) {
