@@ -2,16 +2,12 @@
 require("dotenv").config();
 
 var wrap = require('word-wrap');
-
 //require keys file
 var keys = require("./keys.js");
-
 //require axios
 var axios = require("axios");
-
 //require moment
 var moment = require("moment");
-
 //require fs
 var fs = require("fs-extra");
 
@@ -21,7 +17,6 @@ var spotify = new Spotify(keys.spotify);
 
 //omdb key
 var omdb = (keys.omdb);
-
 //bandsintown key
 var bandsInTown = (keys.bandsInTown);
 
