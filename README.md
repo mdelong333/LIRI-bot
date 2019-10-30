@@ -19,10 +19,10 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## Demo
 
-* [`spotify-this-song`](./demo/LIRI-demo-spotify.gif)
-* [`concert-this`](./demo/LIRI-demo-concert.gif)
-* [`movie-this`](./demo/LIRI-demo-movie.gif)
-* [`do-what-it-says`](./demo/LIRI-demo-do.gif)
+[`spotify-this-song`](./demo/LIRI-demo-spotify.gif)
+[`concert-this`](./demo/LIRI-demo-concert.gif)
+[`movie-this`](./demo/LIRI-demo-movie.gif)
+[`do-what-it-says`](./demo/LIRI-demo-do.gif)
 
 ## Tech used
 
