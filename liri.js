@@ -45,7 +45,7 @@ switch (command) {
 
     default: console.log(wrap(`
 
-    Invalid input - enter one of the following commands:
+    Enter one of the following commands:
     
     spotify-this-song to search songs on spotify, returns up to 5 relevant results
     concert-this to search upcoming concerts by a specific artist

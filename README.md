@@ -8,7 +8,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 ## Instructions
 
 1. Clone repo
-* [`LIRI](https://github.com/mdelong333/LIRI-bot)
+* [`LIRI`](https://github.com/mdelong333/LIRI-bot)
 2. Run `npm install`
 3. Use command line to pass in `node liri.js` followed by one of four commands
     - `spotify-this-song`
@@ -17,9 +17,12 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
     - `do-what-it-says`
 4. Follow your command with the song/band/movie you'd like to search
 
-## Demo video
+## Demo
 
-* link goes here
+* [`spotify-this-song`](./demo/LIRI-demo-spotify.gif)
+* [`concert-this`](./demo/LIRI-demo-concert.gif)
+* [`movie-this`](./demo/LIRI-demo-movie.gif)
+* [`do-what-it-says`](./demo/LIRI-demo-do.gif)
 
 ## Tech used
 
