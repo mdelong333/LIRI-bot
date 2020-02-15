@@ -7,8 +7,8 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 ## Instructions
 
-1. Clone repo
-* [`LIRI`](https://github.com/mdelong333/LIRI-bot)
+1. Open CLI and clone repo
+* `git clone git@github.com:mdelong333/LIRI-bot.git`
 2. Run `npm install`
 3. Use command line to pass in `node liri.js` followed by one of four commands
     - `spotify-this-song`
