@@ -21,7 +21,7 @@
     "bit_js": "^3.0.1",
     "dotenv": "^8.2.0",
     "fs-extra": "^8.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-spotify-api": "^1.1.1",
     "open-movie-database-api": "^1.1.2",
     "word-wrap": "^1.2.3"
